@@ -11,7 +11,8 @@
     "start": "node dist/server.js",
     "start:dev": "LOCAL=false ts-node-dev server.ts",
     "start:heroku": "ts-node server.ts",
-    "postinstall": "tsc"
+    "postinstall": "tsc",
+    "build": "react-scripts build"
   },
   "author": "your name here",
   "license": "ISC",
