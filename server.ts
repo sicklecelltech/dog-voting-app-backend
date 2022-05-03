@@ -43,6 +43,23 @@ app.get("/breeds", async (req, res) => {
   }
 });
 
+app.post<{}, {}, { dogbreeds: string }>("/breeds", async (req, res) => {
+  try {
+    const newBreed = req.body.dogbreeds;
+    const query = `INSERT INTO breedvotes (dogbreed)  
+                VALUES ($1)
+                Returning *`;
+    const queryRes = await client.query(query, [newBreed]);
+    if (queryRes.rowCount === 0) {
+      res.status(400);
+    } else {
+      res.status(201).send(queryRes.rows);
+    }
+  } catch (error) {
+    res.status(404).send(error.stack);
+  }
+});
+
 //Start the server on the given port
 const port = process.env.PORT;
 if (!port) {
