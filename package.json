@@ -8,6 +8,7 @@
     "start:dev": "ts-node-dev server.ts",
     "postinstall": "tsc",
     "format": "prettier --write ./server.ts",
+    "format:check": "prettier --check ./server.ts",
     "lint": "eslint ./server.ts"
   },
   "author": "your name here",
