@@ -2,6 +2,7 @@ import { Client } from "pg";
 import { config } from "dotenv";
 import express from "express";
 import cors from "cors";
+import filePath from "./filePath";
 
 config(); //Read .env file lines as though they were env vars.
 
@@ -27,13 +28,14 @@ const client = new Client(dbConfig);
 client.connect();
 
 app.get("/", async (req, res) => {
-  res.send("hello");
+  const pathToFile = filePath("./index.html");
+  res.sendFile(pathToFile);
 });
 
 app.get("/breeds", async (req, res) => {
   try {
     const queryRes = await client.query(
-      "SELECT * FROM breedvotes ORDER BY vote LIMIT 10"
+      "SELECT * FROM breedvotes ORDER BY vote DESC"
     );
     res.status(200).json(queryRes.rows);
   } catch (error) {
