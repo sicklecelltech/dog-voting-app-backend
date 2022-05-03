@@ -19,5 +19,4 @@ jobs:
       run: yarn lint
     - name: Check types compile
       run: yarn type-check
-    - name: Check app builds
-      run: yarn build
+ 
