@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS breedvotes;
 CREATE TABLE breedvotes (
     id SERIAL PRIMARY KEY,
     dogbreed TEXT NOT NULL,
-    vote INTEGER NOT NULL DEFAULT 0,
+    vote INTEGER NOT NULL DEFAULT 1,
     time TIMESTAMP DEFAULT now()
 );
 
