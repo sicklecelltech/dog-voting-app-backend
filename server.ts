@@ -30,16 +30,16 @@ app.get("/", async (req, res) => {
   res.send("hello");
 });
 
-
 app.get("/breeds", async (req, res) => {
-
   try {
-    const queryRes = await client.query("SELECT * FROM breedvotes ORDER BY vote LIMIT 10")
-    res.status(200).json(queryRes.rows)
+    const queryRes = await client.query(
+      "SELECT * FROM breedvotes ORDER BY vote LIMIT 10"
+    );
+    res.status(200).json(queryRes.rows);
   } catch (error) {
-    res.status(404).send(error)
+    res.status(404).send(error.stack);
   }
-})
+});
 
 //Start the server on the given port
 const port = process.env.PORT;
