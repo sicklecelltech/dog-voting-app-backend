@@ -28,7 +28,7 @@ const client = new Client(dbConfig);
 client.connect();
 
 app.get("/", async (req, res) => {
-  const pathToFile = filePath("index.html");
+  const pathToFile = filePath("/public/index.html");
   res.sendFile(pathToFile);
 });
 
