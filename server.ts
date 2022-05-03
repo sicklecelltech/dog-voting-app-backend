@@ -30,6 +30,12 @@ app.get("/", async (req, res) => {
   res.send("hello");
 });
 
+
+app.get("/breeds", async (req, res) => {
+  const queryRes = await client.query("SELECT * FROM breedvotes ORDER BY vote LIMIT 10")
+  res.status(200).json(queryRes.rows)
+})
+
 //Start the server on the given port
 const port = process.env.PORT;
 if (!port) {
