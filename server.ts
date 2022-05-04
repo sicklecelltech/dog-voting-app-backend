@@ -43,9 +43,9 @@ app.get("/breeds", async (req, res) => {
   }
 });
 
-app.post<{}, {}, { dogbreeds: string }>("/breeds", async (req, res) => {
+app.post<{}, {}, { dogbreed: string }>("/breeds", async (req, res) => {
   try {
-    const newBreed = req.body.dogbreeds;
+    const newBreed = req.body.dogbreed;
     const query = `INSERT INTO breedvotes (dogbreed)  
                 VALUES ($1)
                 Returning *`;
