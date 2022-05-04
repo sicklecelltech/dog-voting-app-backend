@@ -60,6 +60,29 @@ app.post<{}, {}, { dogbreed: string }>("/breeds", async (req, res) => {
   }
 });
 
+app.put<{ id: string }, {}, { vote: number }>(
+  "/breeds/:id",
+  async (req, res) => {
+    try {
+      const breedId = req.params.id;
+      const currentBreedVote = req.body.vote;
+      const newBreedVote = currentBreedVote + 1;
+      const query = `UPDATE breedvotes
+  SET vote = $1
+  WHERE id = $2
+  RETURNING *;`;
+      const queryRes = await client.query(query, [newBreedVote, breedId]);
+      if (queryRes.rowCount === 0) {
+        res.status(400).send("ID doesn't exist");
+      } else {
+        res.status(201).send(queryRes.rows);
+      }
+    } catch (error) {
+      res.status(404).send(error.stack);
+    }
+  }
+);
+
 //Start the server on the given port
 const port = process.env.PORT;
 if (!port) {
