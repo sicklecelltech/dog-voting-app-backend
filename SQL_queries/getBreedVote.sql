@@ -1,4 +1,3 @@
-SELECT dogbreed, vote 
+SELECT *
 FROM breedvotes
-ORDER BY vote DESC
-LIMIT 10;
+ORDER BY vote DESC, dogbreed;
