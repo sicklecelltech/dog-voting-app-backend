@@ -60,12 +60,12 @@ app.post<{}, {}, { dogbreed: string }>("/breeds", async (req, res) => {
   }
 });
 
-app.put<{ id: string }, {}, { vote: number }>(
+app.put<{ id: string }, {}, { currentVote: number }>(
   "/breeds/:id",
   async (req, res) => {
     try {
-      const breedId = req.params.id;
-      const currentBreedVote = req.body.vote;
+      const breedId = parseInt(req.params.id);
+      const currentBreedVote = req.body.currentVote;
       const newBreedVote = currentBreedVote + 1;
       const query = `UPDATE breedvotes
   SET vote = $1
