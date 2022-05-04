@@ -9,7 +9,7 @@
     "lint": "eslint",
     "type-check": "tsc --noEmit",
     "start": "node dist/server.js",
-    "start:dev": "LOCAL=false ts-node-dev server.ts",
+    "start:dev": "ts-node-dev server.ts",
     "start:heroku": "ts-node server.ts",
     "postinstall": "tsc"
   },
