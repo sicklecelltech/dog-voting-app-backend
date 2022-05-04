@@ -35,7 +35,7 @@ app.get("/", async (req, res) => {
 app.get("/breeds", async (req, res) => {
   try {
     const queryRes = await client.query(
-      "SELECT * FROM breedvotes ORDER BY vote DESC"
+      "SELECT * FROM breedvotes ORDER BY vote DESC LIMIT 10"
     );
     res.status(200).json(queryRes.rows);
   } catch (error) {
