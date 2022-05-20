@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS breedvotes;
+
+CREATE TABLE breedvotes (
+    id SERIAL PRIMARY KEY,
+    dogbreed TEXT NOT NULL UNIQUE,
+    vote INTEGER NOT NULL DEFAULT 1,
+    time TIMESTAMP DEFAULT now()
+);
